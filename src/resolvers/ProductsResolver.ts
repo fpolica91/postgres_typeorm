@@ -23,10 +23,15 @@ export class ProductsResolver {
     return product;
   }
 
+  @Mutation(() => Boolean)
+  deleteProduct(@Arg("id") id: number) {
+    Product.delete(id);
+    return true;
+  }
+
   @Query(() => [ProductReturnType])
   async getProducts() {
     const products = await Product.find();
-    console.log(products);
     return products;
   }
 }
